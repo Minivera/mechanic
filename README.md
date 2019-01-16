@@ -232,6 +232,4 @@ end function
 ```
 
 ## Examples
-
-
-
+* [Create a quest](/examples/create_a_quest.md)
