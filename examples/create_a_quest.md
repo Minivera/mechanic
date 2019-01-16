@@ -4,7 +4,7 @@ Creating a random quest may require some external data for language and text, bu
 1. Find the quest giver
 2. Find the location of the objective
 3. Find the objective
-4. Generated the objective
+4. Generate the objective
 
 ```
 import NPCFactory from '...';
