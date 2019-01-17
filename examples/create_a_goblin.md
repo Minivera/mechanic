@@ -70,7 +70,11 @@ begin factory GoblinShamanFactory from GoblinFactory
     end step
 end factory
 
-begin function createGoblin() returns (GoblinFactory.produce, error)
-    return GoblinFactory.new(), empty
+begin function createGoblin() returns (GoblinFactory.produce[], error)
+    GoblinFactory.produce[] goblins = list()
+    for (int i < 10) loop
+        goblins[i] = GoblinFactory.new()
+    end for
+    return goblins, empty
 end function
 ```
