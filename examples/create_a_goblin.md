@@ -1,6 +1,6 @@
 Creating goblins could be as simple as adding some statistics inside a JSON file and calling it a day, but mechanic allows you to create goblins with randomization elements and customize every type of goblin there is.
 
-For example, imagine we want to generate a troup of 10 goblins, with a non-equal distribution of sword weilding goblins, bow weilding goblins and goblin shamans. Since we don't want our level 1 adventurers to be destroyed, we set our weight to a d10 roll. On a 1 to 6, it's a Sword goblin, on a 7 to 9 it's a bow goblin and on a 10 it's a shaman.
+For example, imagine we want to generate a troupe of 10 goblins, with a non-equal distribution of sword wielding goblins, bow wielding goblins and goblin shamans. Since we don't want our level 1 adventurers to be destroyed, we set our weight to a d10 roll. On a 1 to 6, it's a Sword goblin, on a 7 to 9 it's a bow goblin and on a 10 it's a shaman.
 
 ```
 import MonsterFactory from '...'
