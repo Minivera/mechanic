@@ -45,13 +45,13 @@ Since the language is not built with optimization in mind, the type system can b
 * **char**, a character available within the engine charset (How do we handle charsets?). defaults to ''.
 * **int**, a integer number. It comes into the usual variety of **short**, **int** or **long**. Defaults to 0.
 * **float**, a floating point number. Defaults to 0.
-* **boolean**, a boolean, tru or false. Defaults to false.
+* **boolean**, a boolean, true or false. Defaults to false.
 
 Primitives have a default value that is predictable to make creating content easier and prevent the need for null values management. When you create a variable of any of these primitive types without giving it a value, its value is the default value.
 
 Each of these primitive types can be used to create lists, inspired by the golang slices. Slice are arrays of dynamic length (In golang, they're built using part of an underlying array). They're accessed using integer indexes and the data is not mutable, getting something out of a list means you get a "copy" of the data. Structures can also contain other structures to create a structural hierarchy. When not initialized, lists are set as empty. Lists should be easy to divide and it should be easy to extract data from them, thus, the two dots `..` nomenclature can be used for manipulating data.
 
-Primitives can be used to create structures - like C or golang structs - that act like objects. A structures is mutable within its scope only, so passing a structures to a functions would not pass by reference by default. A structure's variable can be set as empty if it isn't initialized.
+Primitives can be used to create structures - like C or golang structs - that act like objects. A structures is mutable within its scope only, so passing a structures to a functions would not pass by reference by default. A structure variable can be set as empty if it isn't initialized.
 
 Any variable can be defined as a constant variable, which means it's value cannot be changed. In case of structures, it means that the structure is readonly.
 
@@ -64,12 +64,12 @@ A keyword should be available to use type inference, removing the need to specif
 * Error type that can be set to empty
 
 ## Randomization
-When generating content, randomiztion can be very useful. Mechanic should allow a programmer to create a random integer number between two value easily. Converting that number to a float can then be a matter of dividing that number.
+When generating content, randomization can be very useful. Mechanic should allow a programmer to create a random integer number between two value easily. Converting that number to a float can then be a matter of dividing that number.
 
-However, generating numbers based on weight should also be a core feature. By using the lists defined in the type system, we can acheive this easily and keep the code readable. For example, a randomization with a weight of 60% for 1 and 40% for 0 coulc be expressed like this: `[0..5: 1, 6..9: 0]`.
+However, generating numbers based on weight should also be a core feature. By using the lists defined in the type system, we can achieve this easily and keep the code readable. For example, a randomization with a weight of 60% for 1 and 40% for 0 could be expressed like this: `[0..5: 1, 6..9: 0]`.
 
 ## Modules
-In a file, anything that is not identified as private is exported. Each file act as it's own module and the folder structure is the namespace. All imports starts at the project's root and are not relative to the current importing file's directory. I do not see the need to allow programmers to define custom namespaces as the folder structure is very often used as the standard for namespaces, better to just enforce the standard. Namespacing and modularization exists to allow the engine reading the language to only load in memory code that will need to be used.
+In a file, anything that is not identified as private is exported. Each file act as its own module and the folder structure is the namespace. All imports starts at the project's root and are not relative to the current importing file's directory. I do not see the need to allow programmers to define custom namespaces as the folder structure is very often used as the standard for namespaces, better to just enforce the standard. Namespacing and modularization exists to allow the engine reading the language to only load in memory code that will need to be used.
 
 ### Export for external tool
 While modules are exported and imported inside the mechanic projects, some code can also be exported for use in external tools (Like games). Only functions and factories can be exported for the external world.
@@ -147,7 +147,7 @@ begin function code()
     for (int i < len(initalizedSlice)) loop
         // For act as the while and for loop, len gets the length of anything
          if (i == 2) then
-            contine loop // go back to the loop
+            continue loop // go back to the loop
         end if
         if (i == 3) then
             end loop // Ends the loop early
