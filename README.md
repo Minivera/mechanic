@@ -45,10 +45,11 @@ Since the language is not built with optimization in mind, the type system can b
 * **char**, a character available within the engine charset (How do we handle charsets?). defaults to ''.
 * **int**, a integer number. It comes into the usual variety of **short**, **int** or **long**. Defaults to 0.
 * **float**, a floating point number. Defaults to 0.
+* **boolean**, a boolean, tru or false. Defaults to false.
 
 Primitives have a default value that is predictable to make creating content easier and prevent the need for null values management. When you create a variable of any of these primitive types without giving it a value, its value is the default value.
 
-Each of these primitive types can be used to create lists, inspired by the golang slices. Slice are arrays of dynamic length (In golang, they're built using part of an underlying array). They're accessed using integer indexes and the data is not mutable, getting something out of a list means you get a "copy" of the data. Structures can also contain other structures to create a structural hierarchy. When not initialized, lists are set as empty.
+Each of these primitive types can be used to create lists, inspired by the golang slices. Slice are arrays of dynamic length (In golang, they're built using part of an underlying array). They're accessed using integer indexes and the data is not mutable, getting something out of a list means you get a "copy" of the data. Structures can also contain other structures to create a structural hierarchy. When not initialized, lists are set as empty. Lists should be easy to divide and it should be easy to extract data from them, thus, the two dots `..` nomenclature can be used for manipulating data.
 
 Primitives can be used to create structures - like C or golang structs - that act like objects. A structures is mutable within its scope only, so passing a structures to a functions would not pass by reference by default. A structure's variable can be set as empty if it isn't initialized.
 
@@ -61,6 +62,11 @@ A keyword should be available to use type inference, removing the need to specif
 * A cursor/iterator type 
 * Methods in structures
 * Error type that can be set to empty
+
+## Randomization
+When generating content, randomiztion can be very useful. Mechanic should allow a programmer to create a random integer number between two value easily. Converting that number to a float can then be a matter of dividing that number.
+
+However, generating numbers based on weight should also be a core feature. By using the lists defined in the type system, we can acheive this easily and keep the code readable. For example, a randomization with a weight of 60% for 1 and 40% for 0 coulc be expressed like this: `[0..5: 1, 6..9: 0]`.
 
 ## Modules
 In a file, anything that is not identified as private is exported. Each file act as it's own module and the folder structure is the namespace. All imports starts at the project's root and are not relative to the current importing file's directory. I do not see the need to allow programmers to define custom namespaces as the folder structure is very often used as the standard for namespaces, better to just enforce the standard. Namespacing and modularization exists to allow the engine reading the language to only load in memory code that will need to be used.
@@ -121,6 +127,8 @@ begin function code()
     var variable = 0 // Type can be inferred
     int[] slice = list() // An empty list of integers, omitting list() would make the value equal to empty
     int[] initalizedSlice = list([1, 2, 3, 4, 5]) // A list initialized with base values
+    int[] partOfSlice = initalizedSlice[1..3] // Gets elements at index one to three
+    initalizedSlice = list([0..3: 1, 4..5: 0]) // Changes the list to [1, 1, 1, 0, 0]
 
     if (variable == 0) then
         // Simple if
