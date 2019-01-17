@@ -143,6 +143,7 @@ begin function code()
         // Else case
     end if
     
+    // This loop has a shorthand syntax. Remember that ints start at 0. If nothing is given, i += 1 will always be used.
     for (int i < len(initalizedSlice)) loop
         // For act as the while and for loop, len gets the length of anything
          if (i == 2) then
@@ -151,6 +152,11 @@ begin function code()
         if (i == 3) then
             end loop // Ends the loop early
         end if
+    end for
+    
+    // For a more standard loop, semi-colons can be used
+    for (int i; i < len(initalizedSlice); i += 1) loop
+        // Same as above, could also initialize i
     end for
 
     for (int element in initalizedSlice) loop
