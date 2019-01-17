@@ -65,8 +65,17 @@ A keyword should be available to use type inference, removing the need to specif
 ## Modules
 In a file, anything that is not identified as private is exported. Each file act as it's own module and the folder structure is the namespace. All imports starts at the project's root and are not relative to the current importing file's directory. I do not see the need to allow programmers to define custom namespaces as the folder structure is very often used as the standard for namespaces, better to just enforce the standard. Namespacing and modularization exists to allow the engine reading the language to only load in memory code that will need to be used.
 
+### Export for external tool
+While modules are exported and imported inside the mechanic projects, some code can also be exported for use in external tools (Like games). Only functions and factories can be exported for the external world.
+
 ## Functions
 Functions exists in the language and can be used anywhere. A function should have the ability to be overloaded if the signature is different. A function can have multiple return values. If it does, it needs to return all the values, even if returning empty. They work the same as most languages. They can access anything from the global scope.
+
+## Errors
+Errors should be useful, easy to manage, easy to handle for the externa tools and work well whether or not you are using mechanic in a live game or to compile content. Nothing has been decided on that front yet.
+
+## Outside content and files
+Loading of external content (For example, yaml, json, html...) should be possible as well as injecting external variables as long as they can be converted to mechanic's base types. By default, I would like to support JSON and YAML for structure data and languages and HTML for views.
 
 ## Syntax
 I personally prefer the syntax of languages like Visual Basic and Pascal for their readability, even if they're more verbose than other languages, so the language takes some cues from them. Here is quick overview of the language's syntax.
@@ -209,7 +218,8 @@ begin factory MonsterFactory uses (string[] nameList)
     end step
 end factory
 
-begin function createStuff() returns MonsterFactory.produce
+// External means that this function will be callable from tools running this mechanic code
+begin external function createStuff() returns MonsterFactory.produce
     // I can create an anonymous factory that extends another one
     begin factory GoblinFactory from MonsterFactory
         begin produce
