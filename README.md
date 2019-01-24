@@ -255,6 +255,9 @@ begin external function createStuff() returns MonsterFactory.produce
 end function
 ```
 
+## Link
+* [Advanced content](/advanced.md)
+
 ## Examples
 * [Create a quest](/examples/create_a_quest.md)
 * [Create a goblin](/examples/create_a_goblin.md)
